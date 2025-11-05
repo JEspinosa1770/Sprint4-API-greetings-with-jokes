@@ -28,16 +28,33 @@ describe('Function "getJoke"', () => {
 
         const result = await getJoke(API_URL);
 
-        expect(result).toBeUndefined();
-
-        expect(fetch).toHaveBeenCalledWith(API_URL, expect.any(Object));
-
-        expect(consoleErrorSpy).toHaveBeenCalledWith(
+        expect(result).toBeUndefined(); // que devuelva undefined
+        expect(fetch).toHaveBeenCalledWith(API_URL, expect.any(Object)); // que haya sido llamada con la url correcta
+        expect(consoleErrorSpy).toHaveBeenCalledWith( // que el error se mostró por consola
             "Hubo un problema con la operación fetch:",
             networkError
         );
 
         consoleErrorSpy.mockRestore();
     });
+
+    it('should throw an error if the HTTP response is not OK (e.g., 404).', async () => {
+        const errorStatus = 404;
+        const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+        (global.fetch as any).mockResolvedValue({
+            ok: false,
+            status: errorStatus,
+        } as unknown as Response);
+
+        const result = await getJoke(API_URL);
+
+        expect(result).toBeUndefined();
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            "Hubo un problema con la operación fetch:",
+            new Error(`Error HTTP: ${errorStatus}`) 
+        );
+
+        consoleErrorSpy.mockRestore();
+    });    
 })
 
