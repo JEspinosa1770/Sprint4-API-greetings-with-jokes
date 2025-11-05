@@ -20,5 +20,24 @@ describe('Function "getJoke"', () => {
         const result = await getJoke(API_URL)
         expect(result).toEqual(mockData);
     });
+
+    it('should detect a fecth error or network error', async () => {
+        const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+        const networkError = new Error("Fallo de conexión simulado");
+        (global.fetch as any).mockRejectedValue(networkError);
+
+        const result = await getJoke(API_URL);
+
+        expect(result).toBeUndefined();
+
+        expect(fetch).toHaveBeenCalledWith(API_URL, expect.any(Object));
+
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            "Hubo un problema con la operación fetch:",
+            networkError
+        );
+
+        consoleErrorSpy.mockRestore();
+    });
 })
 
