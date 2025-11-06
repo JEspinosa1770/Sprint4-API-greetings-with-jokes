@@ -8,6 +8,7 @@ Este repositorio contiene ejercicios diseñados para aprender a usar APIs en su 
 4. [📁 Estructura del Proyecto](#-estructura-del-proyecto)
 5. [🚀 Funciones Implementadas](#-funciones-implementadas)
 7. [💻 Tecnologías usadas](#-tecnologías-usadas)
+6. [🎁 Demo](#-demo)
 8. [🤝 Contribuciones y Contacto](#-contribuciones-y-contacto)
 
 ## 📄 Requisitos
@@ -89,7 +90,14 @@ Este proyecto está desarrollado utilizando las siguientes tecnologías y herram
 * **TypeScript**: Para el desarrollo del código, proporcionando tipado estático.
 * **HTML5** y **CSS3**: Para la estructura y los estilos básicos de la interfaz de usuario.
 * **Vitest**: Framework de pruebas unitarias para testing rápido y moderno.
+---
+## 🎁 Demo
 
+Puede verse una demo del proyecto en su estado actual en:
+
+https://jespinosa1770.github.io/Sprint4-API-greetings-with-jokes/
+
+---
 ## 🤝 Contribuciones y Contacto
 Este proyecto ha sido desarrollado por **Jordi Espinosa** como parte de unos ejercicios sobre APIs.
 
