@@ -79,6 +79,12 @@ A continuación, se describen las funciones disponibles en el proyecto.
 * que detecta y maneja un error de fetch o de red ✅
 * que detecta y maneja un error de status, habiendo recibido correctamente los datos de la API ✅
 
+### 🎬 *Ejercicio 2*
+
+**Descripción:** Maquetación básica de la página web, definiendo la estructura y dando unos estilos iniciales. Diseño con mobile-first y responsive.
+
+**Comentarios:** Se realiza la maquetación de la web con diseño responsive y mobile first. Se pone una imagen de fondo y se crea un título y una tarjeta donde se presentan los chistes.
+
 ---
 
 
