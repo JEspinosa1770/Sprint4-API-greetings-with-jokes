@@ -1,5 +1,5 @@
 
-import type DataJoke from "./interfaces";
+import type { DataJoke } from "./interfaces";
 
 export async function getJoke(url: string): Promise<DataJoke | undefined> {
     try {
@@ -17,7 +17,7 @@ export async function getJoke(url: string): Promise<DataJoke | undefined> {
         return dataJoke;
 
     } catch (error) {
-        console.error("Hubo un problema con la operación fetch:", error);
+        console.error("Hubo un problema con la operación fetch: ", error);
     }
 }
 
