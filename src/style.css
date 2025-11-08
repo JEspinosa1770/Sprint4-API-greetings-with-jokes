@@ -1,29 +1,21 @@
 :root {
+  --color-greeting: #140F07;
+  --color-card: rgba(229, 237, 239, 0.7);
+  --color-text-card:#000000;
+  --btn-primary-color: #84c462;
+  --btn-primary-color-hovered: #a5f37b;
+  --btn-text-color: #262C59;
+  --btn-border-color-hevered: #646cff;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.1;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 body {
   margin: 0;
+  background: no-repeat  url('/images/monjes_riendo.jpg') content-box;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   place-items: center;
@@ -32,36 +24,39 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  margin: 12vh 0 9vh 0;
+  padding: 0.5rem;
+  font-size: 2.5rem;
+  color: var(--color-greeting);
+  background-color: var(--color-card);
+  border-radius: 7px;
+  box-shadow: 0 0 10px 3px var(--color-card);
 }
 
-#app {
-  max-width: 1280px;
+h2 {
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+.card__joke {
+  width: 45%;
+  min-height: 25vh;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  border-radius: 15px;
+  color: var(--color-text-card);
+  background-color: var(--color-card);
+  box-shadow: 0 0 10px 3px var(--color-card);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.joke {
+  margin: 10%;
+  height: 100%;
+  min-height: 12vh;
 }
 
 button {
@@ -71,27 +66,26 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  color: var(--btn-text-color);
+  background-color: var(--btn-primary-color);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border-color: var(--btn-border-color-hevered);
+  background-color: var(--btn-primary-color-hovered);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media screen and (min-width: 478px) {
+  h1 {
+    font-size: 3rem;
   }
-  a:hover {
-    color: #747bff;
+
+  h2 {
+    font-size: 1.5rem;
   }
-  button {
-    background-color: #f9f9f9;
+
+  h3 {
+    font-size: 1.2rem;
   }
 }
