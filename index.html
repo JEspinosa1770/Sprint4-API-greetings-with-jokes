@@ -16,6 +16,17 @@
         <h2>Preparat per riure? 😂</h2>
         <div class="joke"></div>
         <button type="submit" class="btn__next-joke">Següent acudit</button>
+        <div class="vote">
+          <form action="">
+            <label for="voteJoke">Si vols votar l'acudit: </label>
+            <select name="votes" id="voteJoke">
+              <option value=1>Molt dolent</option>
+              <option value=2 selected>Normal</option>
+              <option value=3>Molt bo</option>
+            </select>
+            <button type="submit" class="btn__vote-joke">Votar</button>
+          </form>
+        </div>
       </div>
     </body>
     <script type="module" src="/src/main.ts"></script>
