@@ -85,6 +85,7 @@ A continuación, se describen las funciones disponibles en el proyecto.
 
 **Comentarios:** Se realiza la maquetación de la web con diseño responsive y mobile first. Se pone una imagen de fondo y se crea un título y una tarjeta donde se presentan los chistes.
 
+![Monjes riendo](./images/sample_monjes.jpg)
 ---
 
 
