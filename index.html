@@ -19,12 +19,12 @@
         <div class="vote">
           <form action="">
             <label for="voteJoke">Si vols votar l'acudit: </label>
-            <select name="votes" id="voteJoke">
-              <option value=1>Molt dolent</option>
-              <option value=2 selected>Normal</option>
-              <option value=3>Molt bo</option>
-            </select>
-            <button type="submit" class="btn__vote-joke">Votar</button>
+            <div class="btn-selection">
+              <button class="btn__select" type="button" data-value="1">Dolent</button>
+              <button class="btn__select" type="button" data-value="2">Normal</button>
+              <button class="btn__select" type="button" data-value="3">Molt bo</button>
+            </div>
+            <button type="button" class="btn__vote-joke">Votar</button>
           </form>
         </div>
       </div>
