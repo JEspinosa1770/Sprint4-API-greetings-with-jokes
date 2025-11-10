@@ -5,8 +5,8 @@
     <link rel="icon" type="image/svg+xml" href="/Sprint4-API-greetings-with-jokes/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>API-greetings-with-jokes</title>
-    <script type="module" crossorigin src="/Sprint4-API-greetings-with-jokes/assets/index-CZ8CLIbb.js"></script>
-    <link rel="stylesheet" crossorigin href="/Sprint4-API-greetings-with-jokes/assets/index-CzMD8OZ5.css">
+    <script type="module" crossorigin src="/Sprint4-API-greetings-with-jokes/assets/index-B68K0Byh.js"></script>
+    <link rel="stylesheet" crossorigin href="/Sprint4-API-greetings-with-jokes/assets/index-BDi5yorQ.css">
   </head>
   <body>
     <header>
@@ -18,6 +18,18 @@
         <h2>Preparat per riure? 😂</h2>
         <div class="joke"></div>
         <button type="submit" class="btn__next-joke">Següent acudit</button>
+        <div class="vote">
+          <form action="">
+            <label for="voteJoke" id="vote__question">Si vols votar l'acudit: </label>
+            <div class="btn__selection">
+              <button class="btn__select" type="button" data-value="1">Dolent</button>
+              <button class="btn__select" type="button" data-value="2">Normal</button>
+              <button class="btn__select" type="button" data-value="3">Molt bo</button>
+            </div>
+            <button type="button" class="btn__vote-joke">Votar</button>
+            <span id="message__vote"></span>
+          </form>
+        </div>
       </div>
     </body>
   </body>
