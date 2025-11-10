@@ -13,7 +13,6 @@ export async function getJoke(url: string): Promise<DataJoke | undefined> {
 
         const dataJoke: DataJoke = await answer.json();
 
-        console.log(dataJoke);
         return dataJoke;
 
     } catch (error) {
