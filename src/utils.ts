@@ -17,8 +17,14 @@ export function voteSelection(event: MouseEvent | { currentTarget: HTMLButtonEle
       btn.classList.remove('selected');
   });
   selectedButton.classList.add('selected');
+  haveVotedMessage(false);
 
   return value;
 }
 
 export function findJoke(joke: string): number { return reportJokes.findIndex(elem => elem.joke == joke) }
+
+export function haveVotedMessage(voted: boolean): void { 
+  let textMessage: HTMLElement = document.getElementById("message__vote")!
+  voted ? textMessage.textContent = "Has votat" : textMessage.textContent = "";
+}

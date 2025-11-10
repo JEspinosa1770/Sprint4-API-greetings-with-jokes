@@ -1,6 +1,6 @@
 import './style.css'
 import { getJoke } from './joke.ts';
-import { printJoke } from './utils.ts';
+import { haveVotedMessage, printJoke } from './utils.ts';
 import { voteJoke } from './vote-joke.ts';
 import { voteSelection } from './utils.ts';
 
@@ -18,6 +18,7 @@ btnJoke?.addEventListener('click', () => {
   getJoke(API_URL).then(objectJoke => {  
     printJoke(objectJoke!.joke)
     actualJoke = objectJoke!.joke;
+    haveVotedMessage(false);
   });
 });
 

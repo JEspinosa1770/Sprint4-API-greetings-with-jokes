@@ -2,6 +2,7 @@
 import { reportJokes } from "./ddbb";
 import type { VotedJoke } from "./interfaces";
 import { findJoke } from "./utils";
+import { haveVotedMessage } from "./utils";
 
 export function voteJoke(joke: string, score: number): boolean {
 
@@ -15,6 +16,7 @@ export function voteJoke(joke: string, score: number): boolean {
         } else {
             reportJokes.push(jokeToRecord);
         }
+        haveVotedMessage(true);
         return true;
     } catch (error) {
         console.error("Hubo un problema: ", error);
