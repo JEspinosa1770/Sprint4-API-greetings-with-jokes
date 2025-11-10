@@ -56,10 +56,12 @@ El proyecto en este punto consta principalmente de los archivos:
 
 1. `index.html`: Con la estructura básica de html. Sin maquetar y con estilos básico.
 1. `main.ts`: Archivo typescript que tiene la función de distribuir las tareas.
-3. `joke.ts`: Archivo typescript con la función principal getJoke(), encargada de solicitar un nuevo chiste a la API.
+4. `joke.test.ts`: Archivo con las pruebas unitarias de la función `getJoke()`.
+3. `joke.ts`: Archivo typescript con la función principal `getJoke()`, encargada de solicitar un nuevo chiste a la API.
 2. `interfaces.ts`: Contiene las interfaces necesarias para el programa.
 3. `utils.ts`: Contiene diferentes utilidades, como la función que inserta el chiste en el DOM.
-4. `joke.test.ts`: Archivo con las pruebas unitarias de la función getJoke.
+4. `vote-joke.test.ts`: Archivo con las pruebas unitarias para validar la función `vote-joke()`.
+4. `vote-joke.ts`: Archivo con la función que manejará el voto de los chistes.
 4. `style.css`: Estilos básicos.
 
 ---
@@ -71,7 +73,7 @@ A continuación, se describen las funciones disponibles en el proyecto.
 ### 🎬 *Ejercicio 1*
 **Función:** `getJoke(url)`
 
-**Descripción:** Obtiene los datos correspondientes a un chiste, que en este caso es la estructura de datos definida en interfaces.ts. ```url``` contiene la dirección de la web donde está la API.
+**Descripción:** Obtiene los datos correspondientes a un chiste, que en este caso es la estructura de datos definida en `interfaces.ts`. ```url``` contiene la dirección de la web donde está la API.
 
 **Comentarios:** Su test comprueba:
 * que sea una función ✅
@@ -88,6 +90,21 @@ A continuación, se describen las funciones disponibles en el proyecto.
 ![Monjes riendo](./images/sample_monjes.jpg)
 ---
 
+### 🎬 *Ejercicio 3*
+
+**Descripción:** Implementar un sistema de votación de los chistes, guardando los datos de cada voto en un array de datos.
+
+**Comentarios:** Se crea el archivo `vote-joke.test.ts` para diseñar los test que deberá pasar la lógica necesaria de esta sección. Después se crea la función `voteJoke()` y las funciones auxiliares necesarias, como `findJoke()` y `haveVotedMessage()` en el archivo `utils.ts`. En `index.html` se crean los botones necesarios para seleccionar la satisfacción con el chiste y para emitir el voto. Se aplican los estilos necesarios para ello.
+
+La función `findJoke()` se encarga de buscar si el chiste ya ha sido votado o no. Si lo ha sido, modifica la puntuación dada al chiste, sino, crea una puntuación nueva para el chiste.
+```js
+export function findJoke(joke: string): number { return reportJokes.findIndex(elem => elem.joke == joke) }
+```
+
+La función `haveVotedMessage()` presenta un mensaje en pantalla cada vez que se vota.
+
+
+---
 
 ## 💻 Tecnologías usadas
 
