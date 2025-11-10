@@ -5,7 +5,12 @@
   --btn-primary-color: #84c462;
   --btn-primary-color-hovered: #a5f37b;
   --btn-text-color: #262C59;
-  --btn-border-color-hevered: #646cff;
+  --btn-border-color-hovered: #646cff;
+  --btn-select-border: #ccc;
+  --btn-select-background: #f0f0f0;
+  --btn-select-selected: #007bff;
+  --btn-select-text: white;
+  --btn-vote-background: #ff9e90;
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.1;
@@ -24,7 +29,7 @@ body {
 }
 
 h1 {
-  margin: 12vh 0 9vh 0;
+  margin: 10vh 0 9vh 0;
   padding: 0.5rem;
   font-size: 2.5rem;
   color: var(--color-greeting);
@@ -43,9 +48,9 @@ h3 {
 
 .card__joke {
   width: 45%;
-  min-height: 25vh;
+  min-height: 20vh;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
   border-radius: 15px;
   color: var(--color-text-card);
@@ -56,7 +61,7 @@ h3 {
 .joke {
   margin: 10%;
   height: 100%;
-  min-height: 12vh;
+  min-height: 10vh;
 }
 
 button {
@@ -71,9 +76,48 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: var(--btn-border-color-hevered);
+  border-color: var(--btn-border-color-hovered);
   background-color: var(--btn-primary-color-hovered);
+}
+
+.vote {
+  margin-top: 3vh;
+}
+
+.btn__selection {
+  margin-top: 1vh;
+}
+
+.btn__select, .btn__vote-joke {
+  padding: 5px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border: 2px solid var(--btn-select-border);
+}
+
+.btn__select {
+    background-color: var(--btn-select-background);
+}
+
+.btn__select.selected {
+    background-color: var(--btn-select-selected);
+    color: var(--btn-select-text);
+    border-color: var(--btn-select-selected);
+    font-weight: bold;
+}
+
+.btn__select.selected:hover {
+  border-color: var(--btn-border-color-hovered);
+  background-color: var(--btn-primary-color-hovered);
+  color: var(--color-text-card);
+}
+
+.btn__vote-joke {
+
+    background-color: var(--btn-vote-background);
+
 }
 
 @media screen and (min-width: 478px) {
