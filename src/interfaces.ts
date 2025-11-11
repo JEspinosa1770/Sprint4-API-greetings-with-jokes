@@ -10,3 +10,11 @@ export interface VotedJoke {
     score: number,
     date: string
 }
+
+export interface DataWeather {
+    time: string,
+    temperature: number,
+    wind_speed: number,
+    code: number,
+    rain: boolean
+}
