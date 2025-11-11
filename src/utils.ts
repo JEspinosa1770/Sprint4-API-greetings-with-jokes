@@ -28,3 +28,7 @@ export function haveVotedMessage(voted: boolean): void {
   let textMessage: HTMLElement = document.getElementById("message__vote")!
   voted ? textMessage.textContent = "Has votat" : textMessage.textContent = "";
 }
+
+export function printWeather (message: string): void {
+  document.getElementById("weather")!.textContent = message;
+}

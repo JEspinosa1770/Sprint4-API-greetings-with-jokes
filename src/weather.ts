@@ -1,15 +1,9 @@
 
 import type { DataWeather } from "./interfaces";
-// import { fetchWeatherApi } from 'openmeteo';
+import { printWeather } from "./utils";
 
-// const params = {
-//     "latitude": 41.3888,
-//     "longitude": 2.159,
-//     "current": ["temperature_2m", "wind_speed_10m", "weather_code", "rain"],
-//     "timezone": "Europe/London",
-// };
-// const url = "https://api.open-meteo.com/v1/forecast";
 const API_WEATHER: string = 'https://api.open-meteo.com/v1/forecast?latitude=41.3888&longitude=2.159&current_weather=true&language=es'
+
 export const getWeather = async (): Promise<DataWeather | undefined> => {
     try {
         const answer: Response = await fetch(API_WEATHER);
@@ -18,20 +12,33 @@ export const getWeather = async (): Promise<DataWeather | undefined> => {
         }
 
         const dataWeather = await answer.json();
-console.log(dataWeather)
-        // const dataWeather = answer[0];
-        // const current = dataWeather.current();
-        // const current = dataWeather.current();
-        // const weatherData = {
-        //     current: {
-        //         time: current.variables(0).value,
-        //         temperature_2m: current.variables(1).value,
-        //         wind_speed_10m: current.variables(2).value,
-        //         weather_code: current.variables(3).value,
-        //         rain: current.variables(4).value
-        //     }
-        // }
-console.log(dataWeather.current_weather.temperature)
+
+        let messageSky: string = "";
+        const code: number = dataWeather.current_weather.weathercode;
+
+        switch (true) {
+            case code === 0:
+                messageSky = "cel clar";
+                break;
+            case code === 1:
+                messageSky = "algúns núvols";
+                break;
+            case code === 2:
+                messageSky = "uns quants núvols";
+                break;
+            case code === 3:
+                messageSky = "molts núvols";
+                break;
+            case code > 60 && code < 70:
+                messageSky = "pluja";
+                break;
+            default:
+                messageSky = "temps indeterminat. Mira per la finestra."
+                break;
+        }
+        const messageToPrint: string = `Informació meteorològica: ${dataWeather.current_weather.temperature}° i hi ha ${messageSky}`;
+        printWeather(messageToPrint)
+
         return dataWeather;
 
     } catch (error) {
