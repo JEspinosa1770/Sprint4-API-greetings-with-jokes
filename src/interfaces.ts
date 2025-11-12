@@ -10,3 +10,10 @@ export interface VotedJoke {
     score: number,
     date: string
 }
+
+export interface DataWeather {
+    current_weather: {
+        temperature: number,
+        weathercode: number,
+    }
+}
