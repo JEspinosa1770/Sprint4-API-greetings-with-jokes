@@ -8,37 +8,17 @@ describe('Function "getWeather"', () => {
     });
 
     it('should detect a fecth error or network error', async () => {
-        const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-        const networkError = new Error("Fallo de conexión simulado");
-        (global.fetch as any).mockRejectedValue(networkError);
-
-        const result = await getWeather();
-
-        expect(result).toBeUndefined(); 
-        expect(consoleErrorSpy).toHaveBeenCalledWith( 
-            "Hubo un problema con la operación fetch: ",
-            networkError
-        );
-
-        consoleErrorSpy.mockRestore();
+        global.fetch = vi.fn(() => Promise.reject(new Error("Fallo de conexión simulado")))
+        await expect(getWeather()).rejects.toThrow("Fallo de conexión simulado");
     });
 
     it('should throw an error if the HTTP response is not OK (e.g., 404).', async () => {
         const errorStatus = 404;
-        const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
         (global.fetch as any).mockResolvedValue({
             ok: false,
             status: errorStatus,
         } as unknown as Response);
 
-        const result = await getWeather();
-
-        expect(result).toBeUndefined();
-        expect(consoleErrorSpy).toHaveBeenCalledWith(
-            "Hubo un problema con la operación fetch: ",
-            new Error(`Error HTTP: ${errorStatus}`) 
-        );
-
-        consoleErrorSpy.mockRestore();
+        await expect(getWeather()).rejects.toThrow(`Error HTTP: ${errorStatus}`);
     });    
 })
