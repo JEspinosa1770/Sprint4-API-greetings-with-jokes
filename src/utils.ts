@@ -1,4 +1,33 @@
 import { reportJokes } from "./ddbb";
+import type { DataJoke } from "./interfaces";
+
+export function normalizeJoke(answer: Response, dataJoke: any, randomJoke: number): DataJoke {
+  let jokeCatched: string;
+  let idCatched: string;
+  switch (randomJoke) {
+      case 0:
+          jokeCatched = dataJoke.joke;
+          idCatched = dataJoke.id;
+          break;
+      case 1:
+          jokeCatched = dataJoke.value;
+          idCatched = dataJoke.id;
+          break;   
+      case 2:
+          jokeCatched = dataJoke.setup + " -- " + dataJoke.punchline;
+          idCatched = dataJoke.id;
+          break;   
+      default:
+          throw new Error(`Problemas con la fuente de chistes`);
+          // break;
+  }
+  const finalJoke: DataJoke = {
+      id: idCatched,
+      joke: jokeCatched,
+      status: answer.status
+  }
+  return finalJoke;
+}
 
 export function printJoke(joke: string): void {
   document.querySelector<HTMLDivElement>('.joke')!.innerHTML = `

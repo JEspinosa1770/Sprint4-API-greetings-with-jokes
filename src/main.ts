@@ -7,18 +7,17 @@ import { getWeather } from './weather.ts';
 
 const btnJoke: HTMLButtonElement | null = document.querySelector('.btn__next-joke');
 const btnVote: HTMLButtonElement | null = document.querySelector('.btn__vote-joke');
-const API_URL_JOKEDAD: string = 'https://icanhazdadjoke.com/';
 
 let actualJoke: string = "";
 
 getWeather();
-getJoke(API_URL_JOKEDAD).then(objectJoke => {  
+getJoke().then(objectJoke => {  
   printJoke(objectJoke!.joke)
   actualJoke = objectJoke!.joke;
 });
 
 btnJoke?.addEventListener('click', () => {
-  getJoke(API_URL_JOKEDAD).then(objectJoke => {  
+  getJoke().then(objectJoke => {  
     printJoke(objectJoke!.joke)
     actualJoke = objectJoke!.joke;
     haveVotedMessage(false);
