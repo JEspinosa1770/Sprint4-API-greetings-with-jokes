@@ -2,7 +2,7 @@ import './style.css'
 import { getJoke } from './joke.ts';
 import { haveVotedMessage, printJoke } from './utils.ts';
 import { voteJoke } from './vote-joke.ts';
-import { voteSelection } from './utils.ts';
+import { voteSelection, API_URL } from './utils.ts';
 import { getWeather } from './weather.ts';
 
 const btnJoke: HTMLButtonElement | null = document.querySelector('.btn__next-joke');
@@ -11,13 +11,14 @@ const btnVote: HTMLButtonElement | null = document.querySelector('.btn__vote-jok
 let actualJoke: string = "";
 
 getWeather();
-getJoke().then(objectJoke => {  
+
+getJoke(API_URL()).then(objectJoke => {  
   printJoke(objectJoke!.joke)
   actualJoke = objectJoke!.joke;
 });
 
 btnJoke?.addEventListener('click', () => {
-  getJoke().then(objectJoke => {  
+  getJoke(API_URL()).then(objectJoke => {  
     printJoke(objectJoke!.joke)
     actualJoke = objectJoke!.joke;
     haveVotedMessage(false);
