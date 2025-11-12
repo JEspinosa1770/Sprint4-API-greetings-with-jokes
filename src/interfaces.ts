@@ -12,9 +12,8 @@ export interface VotedJoke {
 }
 
 export interface DataWeather {
-    time: string,
-    temperature: number,
-    wind_speed: number,
-    code: number,
-    rain: boolean
+    current_weather: {
+        temperature: number,
+        weathercode: number,
+    }
 }
