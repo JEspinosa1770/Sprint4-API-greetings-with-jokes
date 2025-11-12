@@ -25,7 +25,7 @@ export const API_URL = (): string[] => {
 export function normalizeJoke(answer: Response, dataJoke: any, randomJoke: number): DataJoke {
   let jokeCatched: string;
   let idCatched: string;
-  console.log(randomJoke)
+
   switch (randomJoke) {
       case 0:
           jokeCatched = dataJoke.joke;
