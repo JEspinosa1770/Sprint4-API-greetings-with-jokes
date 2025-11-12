@@ -103,6 +103,56 @@ export function findJoke(joke: string): number { return reportJokes.findIndex(el
 
 La función `haveVotedMessage()` presenta un mensaje en pantalla cada vez que se vota.
 
+### 🎬 *Ejercicio 4*
+**Función:** `getWeather()`
+
+**Descripción:** Obtiene los datos del tiempo atmosférico de la ciudad de Barcelona. Los procesa y los muestra en un mensaje en la esquina superior izquierda de la web.
+
+**Comentarios:** Su test comprueba:
+* que sea una función ✅
+* que detecta y maneja un error de fetch o de red ✅
+* que detecta y maneja un error de status, habiendo recibido correctamente los datos de la API ✅
+
+### 🎬 *Ejercicio 5*
+**Función:** `getJoke(url)`
+
+**Descripción:** Se definen dos fuentes más para obtener los datos correspondientes a un chiste, y se crea una función para que escoja aleatoriamente una de las tres fuentes. Se crea una función `normalizeJoke` para normalizar los campos que vienen de las diferentes fuentes.
+```js
+export function normalizeJoke(answer: Response, dataJoke: any, randomJoke: number): DataJoke {
+  let jokeCatched: string;
+  let idCatched: string;
+  console.log(randomJoke)
+  switch (randomJoke) {
+      case 0:
+          jokeCatched = dataJoke.joke;
+          idCatched = dataJoke.id;
+          break;
+      case 1:
+          jokeCatched = dataJoke.value;
+          idCatched = dataJoke.id;
+          break;   
+      case 2:
+          jokeCatched = dataJoke.setup + " -- " + dataJoke.punchline;
+          idCatched = dataJoke.id;
+          break;   
+      default:
+          throw new Error(`Problemas con la fuente de chistes`);
+  }
+  const finalJoke: DataJoke = {
+      id: idCatched,
+      joke: jokeCatched,
+      status: answer.status
+  }
+  return finalJoke;
+}
+```
+
+**Comentarios:** Su test comprueba:
+* que sea una función ✅
+* que devuelve los datos esperados ✅
+* que detecta y maneja un error de fetch o de red ✅
+* que detecta y maneja un error de status, habiendo recibido correctamente los datos de la API ✅
+
 
 ---
 

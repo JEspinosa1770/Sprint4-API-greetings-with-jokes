@@ -18,7 +18,6 @@ export const API_URL = (): Object => {
           break;  
       default:
           throw new Error(`Problemas con la fuente de chistes`);
-          // break;
   }
   return [url, randomJoke.toString()];
 }
@@ -42,7 +41,6 @@ export function normalizeJoke(answer: Response, dataJoke: any, randomJoke: numbe
           break;   
       default:
           throw new Error(`Problemas con la fuente de chistes`);
-          // break;
   }
   const finalJoke: DataJoke = {
       id: idCatched,
