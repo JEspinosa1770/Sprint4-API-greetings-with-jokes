@@ -19,7 +19,7 @@ describe('Function "getJoke"', () => {
             json: async () => Promise.resolve(mockData)
         } as unknown as Response)
 
-        const result: DataJoke | undefined = await getJoke()
+        const result: DataJoke | undefined = await getJoke(['https://icanhazdadjoke.com/', "0"])
         expect(result).toEqual(mockData);
     });
 
@@ -33,7 +33,7 @@ describe('Function "getJoke"', () => {
             json: async () => Promise.resolve(mockData)
         } as unknown as Response)
         const expectedResult: DataJoke = {id:"1", joke: mockData.value, status: 200};
-        const result: DataJoke | undefined = await getJoke()
+        const result: DataJoke | undefined = await getJoke(['https://api.chucknorris.io/jokes/random', "1"])
         expect(result).toEqual(expectedResult);
     });
 
@@ -47,47 +47,22 @@ describe('Function "getJoke"', () => {
             json: async () => Promise.resolve(mockData)
         } as unknown as Response)
         const expectedResult: DataJoke = {id:"1", joke: mockData.setup + " -- " + mockData.punchline, status: 200};
-        const result: DataJoke | undefined = await getJoke()
+        const result: DataJoke | undefined = await getJoke(['https://official-joke-api.appspot.com/jokes/random', "2"])
         expect(result).toEqual(expectedResult);
     });
 
     it('should detect a fecth error or network error', async () => {
-        // const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-        // const networkError = new Error("Fallo de conexión simulado");
-        // (global.fetch as any).mockRejectedValue(networkError);
         global.fetch = vi.fn(() => Promise.reject(new Error("Fallo de conexión simulado")))
-
-        // const result = await getJoke(API_URL);
-
-        // expect(result).toBeUndefined(); 
-        await expect(getJoke()).rejects.toThrow("Fallo de conexión simulado");
-        // expect(fetch).toHaveBeenCalledWith(API_URL, expect.any(Object)); 
-        // expect(consoleErrorSpy).toHaveBeenCalledWith( 
-        //     "Hubo un problema con la operación fetch: ",
-        //     networkError
-        // );
-
-        // consoleErrorSpy.mockRestore();
+        await expect(getJoke(['https://icanhazdadjoke.com/', "1"])).rejects.toThrow("Fallo de conexión simulado");
     });
 
     it('should throw an error if the HTTP response is not OK (e.g., 404).', async () => {
         const errorStatus = 404;
-        // const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
         (global.fetch as any).mockResolvedValue({
             ok: false,
             status: errorStatus,
         } as unknown as Response);
-
-        // const result = await getJoke(API_URL);
-
-        // expect(result).toBeUndefined();
-        await expect(getJoke()).rejects.toThrow(`Error HTTP: ${errorStatus}`);
-        // expect(consoleErrorSpy).toHaveBeenCalledWith(
-        //     "Hubo un problema con la operación fetch: ",
-        //     new Error(`Error HTTP: ${errorStatus}`) 
-        // );
-
-        // consoleErrorSpy.mockRestore();
+        await expect(getJoke(['https://icanhazdadjoke.com/', "1"])).rejects.toThrow(`Error HTTP: ${errorStatus}`);
     });    
 })
 
