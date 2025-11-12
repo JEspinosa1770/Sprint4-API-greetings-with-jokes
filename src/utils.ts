@@ -2,7 +2,7 @@ import { reportJokes } from "./ddbb";
 import type { DataJoke, DataWeather } from "./interfaces";
 
 export const amountSources: number = 3;
-export const API_URL = (): Object => {
+export const API_URL = (): string[] => {
   const randomJoke: number = Math.floor(Math.random() * amountSources);
 
   let url: string = "";
