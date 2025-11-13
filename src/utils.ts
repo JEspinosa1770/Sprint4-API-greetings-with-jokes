@@ -2,19 +2,29 @@ import { reportJokes } from "./ddbb";
 import type { DataJoke, DataWeather } from "./interfaces";
 
 export const amountSources: number = 3;
-export const API_URL = (): Object => {
+export const API_URL = (): string[] => {
   const randomJoke: number = Math.floor(Math.random() * amountSources);
+  const card = document.querySelector(".card__joke") as HTMLDivElement;
 
   let url: string = "";
   switch (randomJoke) {
       case 0:
           url = 'https://icanhazdadjoke.com/';
+          card.style.backgroundImage = 'url("./images/emoji-carcajada.png")';
+          card.style.backgroundRepeat = 'no-repeat';
+          card.style.backgroundSize = 'contain';
           break;
       case 1:
           url = 'https://api.chucknorris.io/jokes/random';
+          card.style.backgroundImage = 'url("./images/chuck-norris.png")';
+          card.style.backgroundRepeat = 'no-repeat';
+          card.style.backgroundSize = 'contain';
           break; 
       case 2:
           url = 'https://official-joke-api.appspot.com/jokes/random';
+          card.style.backgroundImage = 'url("./images/cartoon-man.png")';
+          card.style.backgroundRepeat = 'no-repeat';
+          card.style.backgroundSize = 'contain';
           break;  
       default:
           throw new Error(`Problemas con la fuente de chistes`);
@@ -87,25 +97,26 @@ export function printWeather (dataWeather: DataWeather): void {
 
   switch (true) {
       case code === 0:
-          messageSky = "cel clar";
+          messageSky = `<img src="./images/weather-icons/day.svg" alt="Dia clar">`;
           break;
-      case code === 1:
-          messageSky = "algúns núvols";
+      case code >= 1 && code <= 3:
+          messageSky = `<img src="./images/weather-icons/cloudy.svg" alt="Dia ennuvolat">`;
           break;
-      case code === 2:
-          messageSky = "uns quants núvols";
+      case code >= 51 && code <= 67:
+          messageSky = `<img src="./images/weather-icons/rainy-day.svg" alt="Dia plujós">`;
           break;
-      case code === 3:
-          messageSky = "molts núvols";
+      case code >= 71 && code <= 77:
+          messageSky = `<img src="./images/weather-icons/snowy-day.svg" alt="Dia amb neu">`;
           break;
-      case code > 60 && code < 70:
-          messageSky = "pluja";
+      case code >= 80 && code <= 99:
+          messageSky = `<img src="./images/weather-icons/thunder.svg" alt="Dia amb neu">`;
           break;
       default:
           messageSky = "temps indeterminat. Mira per la finestra."
           break;
   }
-  const messageToPrint: string = `Informació meteorològica: ${dataWeather.current_weather.temperature}° i hi ha ${messageSky}`;
-
-  document.getElementById("weather")!.textContent = messageToPrint;
+  const messageToPrint: string = `  ${dataWeather.current_weather.temperature}°`;
+  
+  document.getElementById("icons")!.innerHTML = messageSky;
+  document.getElementById("weather")!.innerHTML = messageToPrint;
 }
