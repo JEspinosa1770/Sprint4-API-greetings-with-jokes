@@ -11,32 +11,28 @@ export const API_URL = (): string[] => {
       case 0:
           url = 'https://icanhazdadjoke.com/';
           card.style.backgroundImage = 'url("./images/emoji-carcajada.png")';
-          card.style.backgroundRepeat = 'no-repeat';
-          card.style.backgroundSize = 'contain';
           break;
       case 1:
           url = 'https://api.chucknorris.io/jokes/random';
           card.style.backgroundImage = 'url("./images/chuck-norris.png")';
-          card.style.backgroundRepeat = 'no-repeat';
-          card.style.backgroundSize = 'contain';
           break; 
       case 2:
           url = 'https://official-joke-api.appspot.com/jokes/random';
           card.style.backgroundImage = 'url("./images/cartoon-man.png")';
-          card.style.backgroundRepeat = 'no-repeat';
-          card.style.backgroundSize = 'contain';
           break;  
       default:
           throw new Error(`Problemas con la fuente de chistes`);
-          // break;
   }
+  card.style.backgroundRepeat = 'no-repeat';
+  card.style.backgroundSize = 'contain';
+
   return [url, randomJoke.toString()];
 }
 
 export function normalizeJoke(answer: Response, dataJoke: any, randomJoke: number): DataJoke {
   let jokeCatched: string;
   let idCatched: string;
-  console.log(randomJoke)
+
   switch (randomJoke) {
       case 0:
           jokeCatched = dataJoke.joke;
@@ -52,7 +48,6 @@ export function normalizeJoke(answer: Response, dataJoke: any, randomJoke: numbe
           break;   
       default:
           throw new Error(`Problemas con la fuente de chistes`);
-          // break;
   }
   const finalJoke: DataJoke = {
       id: idCatched,
@@ -70,26 +65,28 @@ export function printJoke(joke: string): void {
   `
 }
 
-export function voteSelection(event: MouseEvent | { currentTarget: HTMLButtonElement }, 
-  buttons: NodeListOf<HTMLButtonElement>): number {
-  const selectedButton = event.currentTarget as HTMLButtonElement; 
-  const value = parseInt(selectedButton.getAttribute('data-value') || '0');
-
+export function clearSelected(buttons: NodeListOf<HTMLButtonElement>):void {
   buttons.forEach(btn => {
-      btn.classList.remove('selected');
+    btn.classList.remove('selected');
   });
-  selectedButton.classList.add('selected');
-  haveVotedMessage(false);
+
+}
+
+export function voteSelection(event: MouseEvent | { currentTarget: HTMLButtonElement }, 
+  buttons: NodeListOf<HTMLButtonElement>, selectedValue: number): number {
+  const selectedButton = event.currentTarget as HTMLButtonElement; 
+  let value = parseInt(selectedButton.getAttribute('data-value') || '0');
+  clearSelected(buttons);
+  if (selectedValue != value) {
+    selectedButton.classList.add('selected');
+  } else {
+    value = 0;
+  }
 
   return value;
 }
 
 export function findJoke(joke: string): number { return reportJokes.findIndex(elem => elem.joke == joke) }
-
-export function haveVotedMessage(voted: boolean): void { 
-  let textMessage: HTMLElement = document.getElementById("message__vote")!
-  voted ? textMessage.textContent = "Has votat" : textMessage.textContent = "";
-}
 
 export function printWeather (dataWeather: DataWeather): void {
   let messageSky: string = "";

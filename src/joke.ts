@@ -4,7 +4,6 @@ import { normalizeJoke } from "./utils";
 export const amountSources: number = 3;
 
 export async function getJoke(jokeParams: Array<string>): Promise<DataJoke | undefined> {
-    // try {
     const answer: Response = await fetch(jokeParams[0],  { headers: {
         'Accept': 'application/json'
         }
@@ -18,8 +17,5 @@ export async function getJoke(jokeParams: Array<string>): Promise<DataJoke | und
     finalJoke.status = answer.status
 
     return finalJoke;
-    // } catch (error) {
-    //     console.error("Hubo un problema con la operación fetch: ", error);
-    // }
 }
 
