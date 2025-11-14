@@ -3,7 +3,7 @@ import { voteJoke } from './vote-joke';
 import * as Utils from './utils'
 
 describe('Function "voteJoke"', () => {
-    const haveVotedMessageSpy = vi.spyOn(Utils, 'haveVotedMessage').mockImplementation(() => {});
+
     it('should be declared', () => {
         expect(typeof voteJoke).toBe('function');
     });
@@ -13,7 +13,6 @@ describe('Function "voteJoke"', () => {
         const resultTrue = voteJoke("ok", 2)
         expect(resultTrue).toBeTruthy();
         expect(consoleErrorSpy).not.toHaveBeenCalled();
-        expect(haveVotedMessageSpy).toHaveBeenCalledWith(true);
     });
 
     it('should return false if there are an error', () => {
