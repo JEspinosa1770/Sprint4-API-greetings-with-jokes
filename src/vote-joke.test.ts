@@ -1,6 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
 import { voteJoke } from './vote-joke';
-import * as Utils from './utils'
 
 describe('Function "voteJoke"', () => {
 
