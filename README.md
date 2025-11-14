@@ -52,7 +52,7 @@ $ npm run test
 
 ## 📁 Estructura del Proyecto
 
-El proyecto en este punto consta principalmente de los archivos:
+El proyecto consta principalmente de los archivos:
 
 1. `index.html`: Con la estructura básica de html. Sin maquetar y con estilos básico.
 1. `main.ts`: Archivo typescript que tiene la función de distribuir las tareas.
@@ -62,6 +62,8 @@ El proyecto en este punto consta principalmente de los archivos:
 3. `utils.ts`: Contiene diferentes utilidades, como la función que inserta el chiste en el DOM.
 4. `vote-joke.test.ts`: Archivo con las pruebas unitarias para validar la función `vote-joke()`.
 4. `vote-joke.ts`: Archivo con la función que manejará el voto de los chistes.
+4. `weather.test.ts`: Archivo con las pruebas unitarias necesarias para validar la función `getWeather`.
+4. `weather.ts`: Archivo con la función encargada de recoger los datos del tiempo y enviarlos para su impresión.
 4. `style.css`: Estilos básicos.
 
 ---
@@ -121,7 +123,7 @@ La función `haveVotedMessage()` presenta un mensaje en pantalla cada vez que se
 export function normalizeJoke(answer: Response, dataJoke: any, randomJoke: number): DataJoke {
   let jokeCatched: string;
   let idCatched: string;
-  console.log(randomJoke)
+
   switch (randomJoke) {
       case 0:
           jokeCatched = dataJoke.joke;
@@ -153,6 +155,13 @@ export function normalizeJoke(answer: Response, dataJoke: any, randomJoke: numbe
 * que detecta y maneja un error de fetch o de red ✅
 * que detecta y maneja un error de status, habiendo recibido correctamente los datos de la API ✅
 
+### 🎬 *Ejercicio 6*
+
+**Descripción:** Maquetación final de la página web, definiendo las imágenes y estilos finales. 
+
+**Comentarios:** Se realiza la maquetación final de la web. Para ello se añaden iconos para representar el tiempo atmosférico, se cambian los botones para votar los chistes por emoticonos, y se modifica la lógica para dichos votos, eliminando el botón de "Votar" y la función `haveVotedMessage` creada en el ejercicio 3. Se añade una imagen para cada tipo de fuente de chistes, apareciendo según la fuente que haya sido escogida aleatoriamente. 
+
+![Maquetación final](./images/sample_final.jpg)
 
 ---
 
